@@ -1,0 +1,130 @@
+- scheduling of traffic related problems
+
+PROBLEM:
+
+I just got a project that we could possibly work on for the Local Hack Day. 
+There is a small company whose business is providing transportation to patients 
+ACTIONS:
+(e.g. pick them up form their home and send them to hospitals for their appointments), 
+and the manager wants a scheduling program that could give him the most efficient arrangement for the drivers' routes so that each driver can take as many patients as he could per day. 
+
+The input is a MS Excel sheet contains the necessary information 
+(such as the patient's home address, 
+the hospital's address, 
+the appointment time, etc),
+
+ and the output is expected to be also a MS Excel sheet. I personally think this is an interesting and challenging project, so I just bring it up to see if you are interested.
+
+excel upload to db
+final db
+UI connected to db
+map components to route connection
+algorithm for DDS application
+dispatcher access to priority schedule
+visionalization matrix
+security
+reporting
+
+Amazon EC2:
+
+Db credentials:
+
+meduber: DB name
+
+username/password: med/uber123
+
+mysql> CREATE USER 'med'@'localhost' IDENTIFIED BY 'uber123';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'med'@'localhost'
+    ->     WITH GRANT OPTION;
+
+19121
+
+http://www.mysqltutorial.org/python-connecting-mysql-databases/
+
+
+wget http://cdn.mysql.com//Downloads/Connector-Python/mysql-connector-python-2.1.4-1.el7.x86_64.rpm
+
+wget http://cdn.mysql.com//Downloads/Connector-Pythonm/ysql-connector-python-cext_2.1.4-1ubuntu16.04_i386.deb
+
+wget http://cdn.mysql.com//Downloads/Connector-Python/mysql-connector-python-cext-py3_2.1.4-1ubuntu16.04_i386.deb
+
+
+http://www.mysqltutorial.org/python-connecting-mysql-databases/
+
+#!/usr/bin/python
+import MySQLdb
+
+db = MySQLdb.connect(host="localhost",    # your host, usually localhost
+                     user="john",         # your username
+                     passwd="megajonhy",  # your password
+                     db="jonhydb")        # name of the data base
+
+# you must create a Cursor object. It will let
+#  you execute all the queries you need
+cur = db.cursor()
+
+# Use all the SQL you like
+cur.execute("SELECT * FROM YOUR_TABLE_NAME")
+
+# print all the first cell of all the rows
+for row in cur.fetchall():
+    print row[0]
+
+db.close
+
+
+shell> tar xzf mysql-connector-python-VER.tar.gz
+shell> cd mysql-connector-python-VER
+shell> sudo python setup.py install
+
+
+first install pip
+
+or upgrade
+
+sudo -H pip3 install --upgrade pip
+sudo -H pip2 install --upgrade pip
+
+
+pip install mysqlclient
+
+
+LAMP installing not working:
+
+sudo apt-get install build-essential python-dev libapache2-mod-wsgi-py3 libmysqlclient-dev
+
+$ gunzip MySQL-python-1.2.2.tar.gz
+$ tar -xvf MySQL-python-1.2.2.tar
+$ cd MySQL-python-1.2.2
+$ python setup.py build
+$ python setup.py install
+
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-14-04
+
+pip -V or pip --version
+
+*****************MODULE THAT WORKS**************************************************88
+
+#!/usr/bin/env python
+from __future__ import print_function
+
+import pymysql
+
+conn = pymysql.connect(host='localhost', port=3306, user='med', passwd='uber123', db='meduber')
+
+cur = conn.cursor()
+
+cur.execute("SELECT * FROM person")
+
+print(cur.description)
+
+print()
+
+for row in cur:
+    print(row)
+
+cur.close()
+conn.close()
+
+
+http://www.mysqltutorial.org/python-mysql-insert/
